@@ -17,11 +17,7 @@ module.exports = function(config) {
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-classy/angular-classy.js',
-<<<<<<< HEAD
       'classy-extends.js',
-=======
-      'classy-bind.js',
->>>>>>> 474237162b4d3c2b5a9b8dd2525045796551171e
       'bower_components/angular-mocks/angular-mocks.js',
       'test/unit/*.js'
     ],
