@@ -1,0 +1,22 @@
+{
+<<<<<<< HEAD
+    "name": "classy-extends",
+    "scripts": {
+        "start": "./node_modules/coffee-script/bin/coffee --compile classy-extends.coffee",
+=======
+    "name": "classy-bind",
+    "scripts": {
+        "start": "./node_modules/coffee-script/bin/coffee --compile classy-bind.coffee",
+>>>>>>> 474237162b4d3c2b5a9b8dd2525045796551171e
+        "test": "./node_modules/karma/bin/karma start test/karma.conf.js"
+    },
+    "author": "Helen Wu",
+    "license": "MIT",
+    "devDependencies": {
+        "coffee-script": "^1.7.1",
+        "karma": "^0.12.17",
+        "karma-jasmine": "^0.1.5",
+        "karma-phantomjs-launcher": "^0.1.4",
+        "karma-chrome-launcher": "^0.1.4"
+    }
+}
