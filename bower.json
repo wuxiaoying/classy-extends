@@ -1,20 +1,11 @@
 {
-<<<<<<< HEAD
     "name": "classy-extends",
-=======
-    "name": "classy-bind",
->>>>>>> 474237162b4d3c2b5a9b8dd2525045796551171e
     "version": "1.0",
     "authors": [
         "Helen Wu <xiaoyingw12@gmail.com>"
     ],
-<<<<<<< HEAD
     "description": "Extends plugin for Angular Classy",
     "main": "classy-extends.js",
-=======
-    "description": "Bind plugin for Angular Classy",
-    "main": "classy-bind.js",
->>>>>>> 474237162b4d3c2b5a9b8dd2525045796551171e
     "keywords": [
         "classy-plugin",
         "angularjs",
