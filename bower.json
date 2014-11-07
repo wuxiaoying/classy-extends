@@ -19,7 +19,7 @@
         "test"
     ],
     "dependencies": {
-        "angular-classy": "b4861d080054be84b2cfd0377499541fb1111f4e",
+        "angular-classy": "^1.0",
         "angular": "1.3.0-beta.17"
     },
     "devDependencies": {
