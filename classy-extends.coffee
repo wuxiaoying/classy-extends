@@ -5,11 +5,11 @@ extends_module = angular.module 'classy-extends', ['classy.core']
  # Dictionary of all classes
 classObjs = {}
 
+# Class constructors that are not initialized yet because their base class hasn't initialized. 
+waitingClassConstructors = {}
+
 extends_module.classy.plugin.controller
     name: 'extends'
-    
-    # Class constructors that are not initialized yet because their base class hasn't initialized. 
-    waitingClassConstructors: {}
  
     options:
         enabled: true
@@ -79,13 +79,13 @@ extends_module.classy.plugin.controller
             if baseClassObj
                 @extend classConstructor, classObj, baseClassObj
             else
-                @waitingClassConstructors[classObj.name] = classConstructor
+                waitingClassConstructors[classObj.name] = classConstructor
  
         # Register class with classObjs.
         classObjs[classObj.name] = classObj
 
         # Check to see if a waiting class constructor is waiting on this class as its base. 
-        for className, waitingClassConstructor of @waitingClassConstructors
+        for className, waitingClassConstructor of waitingClassConstructors
             waitingClassObj = classObjs[className]
             if waitingClassObj.extends == classObj.name
                 @extend waitingClassConstructor, waitingClassObj, classObj

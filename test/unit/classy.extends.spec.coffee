@@ -17,14 +17,15 @@ app.classy.controller
     init: ->
         @logs = []
         return
-      
-    baseFunc: ->
-        @logs.push 'This only exists on the parent'
-        return
-          
-    someFunc: ->
-        @logs.push 'Parent'
-        return
+    
+    methods:   
+        baseFunc: ->
+            @logs.push 'This only exists on the parent'
+            return
+              
+        someFunc: ->
+            @logs.push 'Parent'
+            return
  
 app.classy.controller
     name: 'ChildController'
@@ -34,13 +35,14 @@ app.classy.controller
         @_super arguments
         return
         
-    someFunc: ->
-        @_super arguments
-        @logs.push 'Child'
-        return
-        
-    getServiceText: ->
-        @TestService()
+    methods: 
+        someFunc: ->
+            @_super arguments
+            @logs.push 'Child'
+            return
+            
+        getServiceText: ->
+            @TestService()
     
 # Tests
 
