@@ -9,6 +9,10 @@ app.factory 'TestService', ->
     ->
         'Test'
 
+app.factory 'TestService2', ->
+    ->
+        'Test2'
+
 app.classy.controller
     name: 'ParentController'
 
@@ -31,6 +35,8 @@ app.classy.controller
     name: 'ChildController'
     extends: 'ParentController'
 
+    inject: ['$scope', 'TestService2']
+
     init: ->
         @_super arguments
         return
@@ -43,6 +49,9 @@ app.classy.controller
 
         getServiceText: ->
             @TestService()
+
+        getServiceText2: ->
+            @TestService2()
 
 # Tests
 
@@ -74,4 +83,7 @@ describe 'Classy extends (classy-extends.coffee)', ->
         expect(scope.getServiceText()).toBe 'Test'
         return
 
+    it 'should inject child class dependencies correctly', ->
+        expect(scope.getServiceText2()).toBe 'Test2'
+        return
     return

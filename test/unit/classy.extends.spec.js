@@ -9,6 +9,12 @@
     };
   });
 
+  app.factory('TestService2', function() {
+    return function() {
+      return 'Test2';
+    };
+  });
+
   app.classy.controller({
     name: 'ParentController',
     inject: ['$scope', 'TestService'],
@@ -28,6 +34,7 @@
   app.classy.controller({
     name: 'ChildController',
     "extends": 'ParentController',
+    inject: ['$scope', 'TestService2'],
     init: function() {
       this._super(arguments);
     },
@@ -38,6 +45,9 @@
       },
       getServiceText: function() {
         return this.TestService();
+      },
+      getServiceText2: function() {
+        return this.TestService2();
       }
     }
   });
@@ -65,6 +75,9 @@
     });
     it('should inject base class dependencies correctly', function() {
       expect(scope.getServiceText()).toBe('Test');
+    });
+    it('should inject child class dependencies correctly', function() {
+      expect(scope.getServiceText2()).toBe('Test2');
     });
   });
 
