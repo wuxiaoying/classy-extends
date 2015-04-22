@@ -56,9 +56,9 @@ extends_module.classy.plugin.controller
         for key, val of baseClassObj.inject
             classObj.inject[key] = val
             if isInitialized
-                if key not in classConstructor.$inject
-                    classConstructor.$inject.push key
-                    classConstructor.__classDepNames.push key
+                if val not in classConstructor.$inject
+                    classConstructor.$inject.push val
+                    classConstructor.__classDepNames.push val
                 classConstructor.__classyControllerInjectObject[key] = val
         return
 

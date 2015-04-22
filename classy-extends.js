@@ -70,9 +70,9 @@
         val = _ref1[key];
         classObj.inject[key] = val;
         if (isInitialized) {
-          if (__indexOf.call(classConstructor.$inject, key) < 0) {
-            classConstructor.$inject.push(key);
-            classConstructor.__classDepNames.push(key);
+          if (__indexOf.call(classConstructor.$inject, val) < 0) {
+            classConstructor.$inject.push(val);
+            classConstructor.__classDepNames.push(val);
           }
           classConstructor.__classyControllerInjectObject[key] = val;
         }
