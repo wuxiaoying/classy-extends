@@ -48,18 +48,13 @@ extends_module.classy.plugin.controller
         # Make sure dependencies are injected correctly for base class and current class.
         isInitialized = classConstructor.__classDepNames?
 
-        if isInitialized and not classConstructor.__classyControllerInjectObject?
-            classConstructor.__classyControllerInjectObject = {}
-            for dep in classConstructor.__classDepNames
-                classConstructor.__classyControllerInjectObject[dep] = '.'
-
         for key, val of baseClassObj.inject
-            classObj.inject[key] = val
+            classObj.inject.push val
             if isInitialized
                 if val not in classConstructor.$inject
                     classConstructor.$inject.push val
                     classConstructor.__classDepNames.push val
-                classConstructor.__classyControllerInjectObject[key] = val
+
         return
 
     preInitBefore: (classConstructor, classObj, module) ->

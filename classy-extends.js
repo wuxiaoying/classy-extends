@@ -25,7 +25,7 @@
       };
     })(),
     extend: function(classConstructor, classObj, baseClassObj) {
-      var dep, isInitialized, key, processMethods, val, _i, _len, _ref, _ref1;
+      var isInitialized, key, processMethods, val, _ref;
       processMethods = (function(_this) {
         return function(baseClassMethods, classMethods) {
           var prop, _results;
@@ -57,24 +57,15 @@
       processMethods(baseClassObj.methods, classObj.methods);
       processMethods(baseClassObj, classObj);
       isInitialized = classConstructor.__classDepNames != null;
-      if (isInitialized && (classConstructor.__classyControllerInjectObject == null)) {
-        classConstructor.__classyControllerInjectObject = {};
-        _ref = classConstructor.__classDepNames;
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          dep = _ref[_i];
-          classConstructor.__classyControllerInjectObject[dep] = '.';
-        }
-      }
-      _ref1 = baseClassObj.inject;
-      for (key in _ref1) {
-        val = _ref1[key];
-        classObj.inject[key] = val;
+      _ref = baseClassObj.inject;
+      for (key in _ref) {
+        val = _ref[key];
+        classObj.inject.push(val);
         if (isInitialized) {
           if (__indexOf.call(classConstructor.$inject, val) < 0) {
             classConstructor.$inject.push(val);
             classConstructor.__classDepNames.push(val);
           }
-          classConstructor.__classyControllerInjectObject[key] = val;
         }
       }
     },
