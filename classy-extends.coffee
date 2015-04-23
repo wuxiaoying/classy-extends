@@ -52,7 +52,11 @@ extends_module.classy.plugin.controller
             classObj.inject.push val
             if isInitialized
                 if val not in classConstructor.$inject
+                    # A bit hacky here, because the local inject messes with the class dep inject sequence
+                    lenInject = classConstructor.$inject.length
                     classConstructor.$inject.push val
+                    extra = ([0...lenInject - classConstructor.__classDepNames.length].map (x) => "")
+                    classConstructor.__classDepNames.push extra...
                     classConstructor.__classDepNames.push val
 
         return

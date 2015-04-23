@@ -25,7 +25,7 @@
       };
     })(),
     extend: function(classConstructor, classObj, baseClassObj) {
-      var isInitialized, key, processMethods, val, _ref;
+      var extra, isInitialized, key, lenInject, processMethods, val, _i, _ref, _ref1, _ref2, _results;
       processMethods = (function(_this) {
         return function(baseClassMethods, classMethods) {
           var prop, _results;
@@ -63,7 +63,18 @@
         classObj.inject.push(val);
         if (isInitialized) {
           if (__indexOf.call(classConstructor.$inject, val) < 0) {
+            lenInject = classConstructor.$inject.length;
             classConstructor.$inject.push(val);
+            extra = (function() {
+              _results = [];
+              for (var _i = 0, _ref1 = lenInject - classConstructor.__classDepNames.length; 0 <= _ref1 ? _i < _ref1 : _i > _ref1; 0 <= _ref1 ? _i++ : _i--){ _results.push(_i); }
+              return _results;
+            }).apply(this).map((function(_this) {
+              return function(x) {
+                return "";
+              };
+            })(this));
+            (_ref2 = classConstructor.__classDepNames).push.apply(_ref2, extra);
             classConstructor.__classDepNames.push(val);
           }
         }
