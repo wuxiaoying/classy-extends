@@ -25,7 +25,7 @@
       };
     })(),
     extend: function(classConstructor, classObj, baseClassObj) {
-      var dep, isInitialized, key, processMethods, val, _i, _len, _ref, _ref1;
+      var extra, isInitialized, key, lenInject, processMethods, val, _i, _ref, _ref1, _ref2, _results;
       processMethods = (function(_this) {
         return function(baseClassMethods, classMethods) {
           var prop, _results;
@@ -58,24 +58,26 @@
       processMethods(baseClassObj.watch, classObj.watch);
       processMethods(baseClassObj, classObj);
       isInitialized = classConstructor.__classDepNames != null;
-      if (isInitialized && (classConstructor.__classyControllerInjectObject == null)) {
-        classConstructor.__classyControllerInjectObject = {};
-        _ref = classConstructor.__classDepNames;
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          dep = _ref[_i];
-          classConstructor.__classyControllerInjectObject[dep] = '.';
-        }
-      }
-      _ref1 = baseClassObj.inject;
-      for (key in _ref1) {
-        val = _ref1[key];
-        classObj.inject[key] = val;
+      _ref = baseClassObj.inject;
+      for (key in _ref) {
+        val = _ref[key];
+        classObj.inject.push(val);
         if (isInitialized) {
           if (__indexOf.call(classConstructor.$inject, val) < 0) {
+            lenInject = classConstructor.$inject.length;
             classConstructor.$inject.push(val);
+            extra = (function() {
+              _results = [];
+              for (var _i = 0, _ref1 = lenInject - classConstructor.__classDepNames.length; 0 <= _ref1 ? _i < _ref1 : _i > _ref1; 0 <= _ref1 ? _i++ : _i--){ _results.push(_i); }
+              return _results;
+            }).apply(this).map((function(_this) {
+              return function(x) {
+                return "";
+              };
+            })(this));
+            (_ref2 = classConstructor.__classDepNames).push.apply(_ref2, extra);
             classConstructor.__classDepNames.push(val);
           }
-          classConstructor.__classyControllerInjectObject[key] = val;
         }
       }
     },
