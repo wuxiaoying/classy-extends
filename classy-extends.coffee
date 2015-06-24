@@ -24,6 +24,7 @@ extends_module.classy.plugin.controller
     # Based on jeresig class.js
     extend: (classConstructor, classObj, baseClassObj) ->
         processMethods = (baseClassMethods, classMethods) =>
+            return if not classMethods
             for prop of baseClassMethods
                 if typeof classMethods[prop] == 'undefined'
                     classMethods[prop] = classConstructor::[prop] = baseClassMethods[prop]

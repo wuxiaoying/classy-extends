@@ -60,6 +60,12 @@
   });
 
   app.classy.controller({
+    name: 'ChildWithNoMethods',
+    "extends": 'ParentController',
+    inject: ['$scope']
+  });
+
+  app.classy.controller({
     name: 'Child2Controller',
     "extends": 'Parent2Controller',
     inject: ['$scope', 'TestService2'],
@@ -97,12 +103,14 @@
   });
 
   describe('Classy extends (classy-extends.coffee)', function() {
-    var childController, scope;
+    var childController, controller, scope;
     beforeEach(module('classyExtendsTest'));
     childController = null;
     scope = null;
+    controller = null;
     beforeEach(function() {
       inject(function($controller, $rootScope) {
+        controller = $controller;
         scope = $rootScope.$new();
         childController = $controller('ChildController', {
           $scope: scope
@@ -122,6 +130,12 @@
     });
     it('should inject child class dependencies correctly', function() {
       expect(scope.getServiceText2()).toBe('Test2');
+    });
+    it('should not fail if no methods in child controller', function() {
+      var childWithNoMethods;
+      childWithNoMethods = controller('ChildWithNoMethods', {
+        $scope: scope
+      });
     });
   });
 

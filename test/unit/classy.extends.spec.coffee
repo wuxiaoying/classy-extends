@@ -59,6 +59,11 @@ app.classy.controller
             @TestService2()
 
 app.classy.controller
+    name: 'ChildWithNoMethods'
+    extends: 'ParentController'
+    inject: ['$scope']
+
+app.classy.controller
     name: 'Child2Controller'
     extends: 'Parent2Controller'
 
@@ -105,9 +110,11 @@ describe 'Classy extends (classy-extends.coffee)', ->
 
     childController = null
     scope = null
+    controller = null
 
     beforeEach ->
         inject ($controller, $rootScope) ->
+            controller = $controller
             scope = $rootScope.$new()
             childController = $controller 'ChildController',
                 $scope: scope
@@ -131,11 +138,17 @@ describe 'Classy extends (classy-extends.coffee)', ->
     it 'should inject child class dependencies correctly', ->
         expect(scope.getServiceText2()).toBe 'Test2'
         return
+
+    it 'should not fail if no methods in child controller', ->
+        childWithNoMethods = controller 'ChildWithNoMethods',
+          $scope: scope
+
+        return
+
     return
 
 describe 'Classy extends - Opposite initialization direction (classy-extends.coffee)', ->
     beforeEach module 'classyExtendsTest'
-
     childController = null
     scope = null
 

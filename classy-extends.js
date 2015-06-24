@@ -29,6 +29,9 @@
       processMethods = (function(_this) {
         return function(baseClassMethods, classMethods) {
           var prop, _results;
+          if (!classMethods) {
+            return;
+          }
           _results = [];
           for (prop in baseClassMethods) {
             if (typeof classMethods[prop] === 'undefined') {
