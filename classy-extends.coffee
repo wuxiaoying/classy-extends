@@ -44,6 +44,7 @@ extends_module.classy.plugin.controller
                     )(prop, classMethods[prop], @options.super)
 
         processMethods baseClassObj.methods, classObj.methods
+        processMethods baseClassObj.watch, classObj.watch
         processMethods baseClassObj, classObj
 
         # Make sure dependencies are injected correctly for base class and current class.

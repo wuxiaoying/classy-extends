@@ -58,6 +58,7 @@
         };
       })(this);
       processMethods(baseClassObj.methods, classObj.methods);
+      processMethods(baseClassObj.watch, classObj.watch);
       processMethods(baseClassObj, classObj);
       isInitialized = classConstructor.__classDepNames != null;
       _ref = baseClassObj.inject;
